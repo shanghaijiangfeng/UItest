@@ -5,7 +5,7 @@ import sys
 import os
 basepath=os.getcwd()
 sys.path.append(basepath)
-from ShowapiRequest import ShowapiRequest
+from util.ShowapiRequest import ShowapiRequest
 "打开图片"
 image = Image.open(basepath+"\\Image\\image2.png")
 "通过pytesseract对图片识别，返回一个字符串"
