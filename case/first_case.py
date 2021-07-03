@@ -1,7 +1,11 @@
 #coding=utf-8
 from business.register_business import RregisterBusiness
+from selenium import webdriver
 class FirstCase(object):
     def __init__(self, driver):
+        driver = webdriver.Chrome()
+        driver.get('http://www.5itest.cn/register')
+        driver.maximize_window()
         self.login=RregisterBusiness(driver)
         # 邮箱、用户名、密码、验证码、错误信息定位元素、错误提示信息
 
@@ -25,3 +29,11 @@ class FirstCase(object):
         success = self.login.user_base('12221@qq.com', '2321', '111111', self.file_name)
         self.assertFalse(success)
         # self.assert
+
+    def main(self):
+        first = FirstCase()
+        first.test_login_code_error()
+        first.test_login_email_error()
+        first.test_login_password_error()
+        first.test_login_username_error()
+        first.test_login_success()
