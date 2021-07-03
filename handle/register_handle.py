@@ -16,7 +16,7 @@ class RegisterHandle:
 
     #输入验证码
     def send_user_code(self,code):
-        self.register_p.get_password_element().send_keys(code)
+        self.register_p.get_code_element().send_keys(code)
 
     #获取页面文字信息,判断错误提示是哪个
     def get_user_text(self, info, user_info):

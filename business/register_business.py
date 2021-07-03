@@ -6,11 +6,11 @@ class RregisterBusiness(object):
 #调用handle层的具体方法执行操作，输入用户名，密码等
 
     #封装注册的方法，输入用户名，email等
-    def user_base(self, email, name, password, file_name):
+    def user_base(self, email, name, password,code):
         self.register_h.send_user_email(email)
         self.register_h.send_user_name(name)
         self.register_h.send_user_password(password)
-        self.register_h.send_user_code(file_name)
+        self.register_h.send_user_code(code)
         self.register_h.click_register_button()
     #获取注册信息，如果有文字，则说明注册成功
     def register_succes(self):
@@ -21,16 +21,16 @@ class RregisterBusiness(object):
 
         # 执行操作
 
-    def login_email_error(self, email, name, password, file_name):
-        self.user_base(email, name, password, file_name)
+    def login_email_error(self, email, name, password, code):
+        self.user_base(email, name, password, code)
         if self.register_h.get_user_text('email_error', "请输入有效的电子邮件地址") == None:
             # print("邮箱检验不成功")
             return True
         else:
             return False
 
-    def register_function(self, email, username, password, file_name, assertCode, assertText):
-        self.user_base(email, username, password, file_name)
+    def register_function(self, email, username, password, code,assertCode, assertText):
+        self.user_base(email, username, password,code)
         if self.register_h.get_user_text(assertCode, assertText) == None:
             # print("邮箱检验不成功")
             return True
@@ -38,8 +38,8 @@ class RregisterBusiness(object):
             return False
         # name错误
 
-    def login_name_error(self, email, name, password, file_name):
-        self.user_base(email, name, password, file_name)
+    def login_name_error(self, email, name, password,code):
+        self.user_base(email, name, password,code)
         if self.register_h.get_user_text('user_name_error', "字符长度必须大于等于4，一个中文字算2个字符") == None:
             # print("用户名检验不成功")
             return True
@@ -48,8 +48,8 @@ class RregisterBusiness(object):
 
         # 密码错误
 
-    def login_password_error(self, email, name, password, file_name):
-        self.user_base(email, name, password, file_name)
+    def login_password_error(self, email, name, password, code):
+        self.user_base(email, name, password, code)
         if self.register_h.get_user_text('password_error', "最少需要输入 5 个字符") == None:
             # print("密码检验不成功")
             return True
@@ -58,8 +58,8 @@ class RregisterBusiness(object):
 
         # 验证码错误
 
-    def login_code_error(self, email, name, password, file_name):
-        self.user_base(email, name, password, file_name)
+    def login_code_error(self, email, name, password, code):
+        self.user_base(email, name, password, code)
         if self.register_h.get_user_text('code_text_error', "验证码错误") == None:
             # print("验证码检验不成功")
             return True
