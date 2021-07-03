@@ -11,14 +11,20 @@ from PIL import Image
 from base.find_element import FindElement
 from util.ShowapiRequest import ShowapiRequest
 
-
+bs=os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 class RegisterFunction(object):
-    def __init__(self, url):
-        self.driver = self.get_driver(url)
+    def __init__(self, url, i):
+        self.driver = self.get_driver(url, i)
+        # 获取driver并且打开url
 
-    # 获取driver并且打开url
-    def get_driver(self, url):
-        driver = webdriver.Chrome()
+    def get_driver(self, url, i):
+        if i == 1:
+            driver = webdriver.Chrome()
+        elif i == 2:
+
+            driver = webdriver.Firefox()
+        else:
+            driver = webdriver.Edge()
         driver.get(url)
         driver.maximize_window()
         return driver
@@ -76,11 +82,12 @@ class RegisterFunction(object):
         if code_error == None:
             print("注册成功")
         else:
-            self.driver.save_screenshot("E:/Teacher/Imooc/SeleniumPython/Image/codeerror.png")
+            self.driver.save_screenshot(bs+"/Image/codeerror.png")
         time.sleep(5)
         self.driver.close()
 
 
 if __name__ == '__main__':
-    register_function = RegisterFunction('http://www.5itest.cn/register')
-    register_function.main()
+    for i in range(3):
+        register_function = RegisterFunction('http://www.5itest.cn/register',i)
+        register_function.main()
