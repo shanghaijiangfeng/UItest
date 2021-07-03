@@ -2,6 +2,10 @@
 from selenium import webdriver
 import time
 import random
+import sys
+import os
+basepath=os.getcwd()
+sys.path.append(basepath)
 from PIL import Image
 from util.ShowapiRequest import ShowapiRequest
 driver = webdriver.Chrome()
@@ -48,7 +52,8 @@ def code_online(file_name):
 def run_main():
     user_name_info = get_range_user()
     user_email = user_name_info+"@163.com"
-    file_name = "E:/Teacher/Imooc/SeleniumPython/Image/test02.png"
+    fn = basepath+"\\Image\\image2.png"
+    file_name = fn
     driver_init()
     get_element("register_email").send_keys(user_email)
     get_element("register_nickname").send_keys(user_name_info)
