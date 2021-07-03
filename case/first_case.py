@@ -3,12 +3,25 @@ from business.register_business import RregisterBusiness
 class FirstCase(object):
     def __init__(self, driver):
         self.login=RregisterBusiness(driver)
+        # 邮箱、用户名、密码、验证码、错误信息定位元素、错误提示信息
+
     def test_login_email_error(self):
-        self.login.login_email_error()
-        pass
+        email_error = self.login.login_email_error('1314@qq.com', 'user1111@qq.com', '111111', self.file_name)
+        return self.assertFalse(email_error, "测试失败")
+
     def test_login_username_error(self):
-        pass
+        username_error = self.login.login_name_error('12123@qq.com', 't1', '111111', self.file_name)
+        self.assertTrue(username_error)
+
     def test_login_code_error(self):
-        pass
-    def test_login_succes(self):
-        pass
+        code_error = self.login.login_name_error('11121@qq.com', 'ss22212', '111111', self.file_name)
+        self.assertFalse(code_error)
+
+    def test_login_password_error(self):
+        password_error = self.login.login_name_error('11311@qq.com', 'ss23222', '111111', self.file_name)
+        self.assertFalse(password_error)
+
+    def test_login_success(self):
+        success = self.login.user_base('12221@qq.com', '2321', '111111', self.file_name)
+        self.assertFalse(success)
+        # self.assert

@@ -35,3 +35,7 @@ class RegisterHandle:
     #点击注册按钮
     def click_register_button(self):
         self.register_p.get_button_element().click()
+
+        # 获取注册按钮文字
+    def get_register_text(self):
+            return self.register_p.get_button_element().text

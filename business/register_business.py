@@ -12,7 +12,7 @@ class RregisterBusiness(object):
         self.register_h.send_user_password(password)
         self.register_h.send_user_code(file_name)
         self.register_h.click_register_button()
-
+    #获取注册信息，如果有文字，则说明注册成功
     def register_succes(self):
         if self.register_h.get_register_text() == None:
             return True
