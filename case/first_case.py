@@ -5,14 +5,20 @@ basepath=os.getcwd()
 sys.path.append(basepath)
 from business.register_business import RregisterBusiness
 from selenium import webdriver
+import unittest
 
-class FirstCase(object):
-    def __init__(self):
+class FirstCase(unittest.TestCase):
+    #前置函数，打开浏览器，访问测试地址
+    def setUp(self):
         driver = webdriver.Chrome()
         driver.get('http://www.5itest.cn/register')
         driver.maximize_window()
-        self.login=RregisterBusiness(driver)
+        self.login=RregisterBusiness(self.driver)
         # 邮箱、用户名、密码、验证码、错误信息定位元素、错误提示信息
+        #后置函数，关闭浏览器
+    def tearDown(self):
+        self.driver.close()
+
 
 
     def test_login_username_error(self):
@@ -31,7 +37,7 @@ class FirstCase(object):
         success = self.login.user_base('12221@qq.com', '2321', '111111', '1231')
         self.assertFalse(success)
         # self.assert
-
+'''
 def main():
         first = FirstCase()
         first.test_login_email_error()
@@ -42,9 +48,9 @@ def main():
 
 
         first.test_login_success()
-
+'''
 if __name__ == '__main__':
-        main()
+        unittest.main()
 
 
 
