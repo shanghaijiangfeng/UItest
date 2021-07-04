@@ -43,7 +43,7 @@ class FirstCase(unittest.TestCase):
                 self.driver.save_screenshot(file_path)
         self.driver.close()
     def test_login_email_error(self):
-        email_error = self.login.login_email_error('1314@qq.com','user1111@qq.com','111111')
+        email_error = self.login.login_email_error('1314@qq.com','user1111@qq.com','111111','23123')
         return self.assertFalse(email_error,"测试失败")
 
     def test_login_username_error(self):
