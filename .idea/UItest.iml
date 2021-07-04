@@ -12,7 +12,6 @@
       <list>
         <option value="$MODULE_DIR$/base" />
         <option value="$MODULE_DIR$/business" />
-        <option value="$MODULE_DIR$/case" />
         <option value="$MODULE_DIR$/handle" />
         <option value="$MODULE_DIR$/log" />
         <option value="$MODULE_DIR$/page" />

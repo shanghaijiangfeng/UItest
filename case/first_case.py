@@ -2,18 +2,29 @@
 import sys
 import os
 
-basepath = os.getcwd()
-sys.path.append(basepath)
+from log.user_log import UserLog
+
+
 from business.register_business import RregisterBusiness
 from selenium import webdriver
 import unittest
 import HTMLTestRunner
 import time
+basepath = os.getcwd()
 
 
 
 class FirstCase(unittest.TestCase):
     # 前置函数，打开浏览器，访问测试地址
+    @classmethod
+    def setUpClass(cls):
+        cls.log = UserLog()
+        cls.logger = cls.log.get_log()
+        cls.file_name = basepath+"\\Image\\image2222.png"
+        cls.driver = webdriver.Chrome()
+        cls.driver.get('http://www.5itest.cn/register')
+
+        cls.driver.maximize_window()
     def setUp(self):
         self.driver = webdriver.Chrome()
         self.driver.get('http://www.5itest.cn/register')
@@ -30,6 +41,7 @@ class FirstCase(unittest.TestCase):
                 case_name = self._testMethodName
                 file_path = os.path.join(os.getcwd() + "/report/" + case_name + ".png")
                 self.driver.save_screenshot(file_path)
+        self.driver.close()
     def test_login_email_error(self):
         email_error = self.login.login_email_error('1314@qq.com','user1111@qq.com','111111')
         return self.assertFalse(email_error,"测试失败")
@@ -73,7 +85,7 @@ if __name__ == '__main__':
         #添加用例到测试套件
         suite = unittest.TestSuite()
         suite.addTest(FirstCase('test_login_success'))
-        # suite.addTest(FirstCase('test_login_code_error'))
+        suite.addTest(FirstCase('test_login_code_error'))
         suite.addTest(FirstCase('test_login_email_error'))
         suite.addTest(FirstCase('test_login_username_error'))
         # unittest.TextTestRunner().run(suite)
