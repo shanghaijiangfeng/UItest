@@ -5,13 +5,13 @@ basepath=os.getcwd()
 sys.path.append(basepath)
 import configparser
 
-bs=os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+
 class ReadIni(object):
     def __init__(self,file_name=None,node=None):
         if file_name == None:
             os.path.abspath('..')
             print(os.pardir)
-            file_name = bs+"/config/LocalElement.ini"
+            file_name = basepath+"/config/LocalElement.ini"
         if node == None:
             self.node = "RegisterElement"
         else:

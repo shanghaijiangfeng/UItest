@@ -7,6 +7,7 @@ sys.path.append(basepath)
 from business.register_business import RregisterBusiness
 from selenium import webdriver
 import unittest
+import HTMLTestRunner
 
 
 class FirstCase(unittest.TestCase):
@@ -53,4 +54,4 @@ def main():
         first.test_login_success()
 '''
 if __name__ == '__main__':
-    unittest.main()
+    print(os.getcwd())

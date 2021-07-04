@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from PIL import Image
-
+print(basepath)
 driver = webdriver.Chrome()
 
 driver.maximize_window()
@@ -33,7 +33,7 @@ print(user_email)
 email_name = driver.find_element_by_id("register_email")
 email_name.send_keys("jiangfeng_94@163.com")
 "selenium保存图片"
-driver.save_screenshot(basepath+"\\Image\\image.png")
+driver.save_screenshot(basepath+"\\Image\\image111.png")
 "获取验证码元素位置"
 code_element = driver.find_element_by_id("getcode_num")
 print(code_element.location)#{"x":123,"y":345}
@@ -42,11 +42,11 @@ left = code_element.location['x']
 top = code_element.location['y']
 right = code_element.size['width']+left
 height = code_element.size['height']+top
-im = Image.open(basepath+"\\Image\\image.png")
+im = Image.open(basepath+"\\Image\\image111.png")
 "根据坐标裁剪出验证码图片"
 img = im.crop((left,top,right,height))
 "保存验证码图片"
-img.save(basepath+"\\Image\\image2.png")
+img.save(basepath+"\\Image\\image2222.png")
 
 
 

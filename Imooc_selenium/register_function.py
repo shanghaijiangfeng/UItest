@@ -11,7 +11,9 @@ from PIL import Image
 from base.find_element import FindElement
 from util.ShowapiRequest import ShowapiRequest
 
-bs=os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+bs = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+
+
 class RegisterFunction(object):
     def __init__(self, url, i):
         self.driver = self.get_driver(url, i)
@@ -82,12 +84,12 @@ class RegisterFunction(object):
         if code_error == None:
             print("注册成功")
         else:
-            self.driver.save_screenshot(bs+"/Image/codeerror.png")
+            self.driver.save_screenshot(bs + "/Image/codeerror.png")
         time.sleep(5)
         self.driver.close()
 
 
 if __name__ == '__main__':
-    for i in range(3):
-        register_function = RegisterFunction('http://www.5itest.cn/register',i)
-        register_function.main()
+
+    register_function = RegisterFunction('http://www.5itest.cn/register', i=1)
+    register_function.main()
