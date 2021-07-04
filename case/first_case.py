@@ -8,6 +8,7 @@ from business.register_business import RregisterBusiness
 from selenium import webdriver
 import unittest
 import HTMLTestRunner
+import time
 
 
 
@@ -22,7 +23,13 @@ class FirstCase(unittest.TestCase):
         # 后置函数，关闭浏览器
 
     def tearDown(self):
-        self.driver.close()
+        time.sleep(2)
+        # if sys.exc_info()[0]:
+        for method_name, error in self._outcome.errors:
+            if error:
+                case_name = self._testMethodName
+                file_path = os.path.join(os.getcwd() + "/report/" + case_name + ".png")
+                self.driver.save_screenshot(file_path)
     def test_login_email_error(self):
         email_error = self.login.login_email_error('1314@qq.com','user1111@qq.com','111111')
         return self.assertFalse(email_error,"测试失败")
@@ -57,12 +64,13 @@ def main():
 
         first.test_login_success()
 '''
-if __name__ == '__main__':
-        #
 
+if __name__ == '__main__':
+        # 测试报告路径
         file_path = os.path.join(os.getcwd() + "\\report\\" + "first_case.html")
-        print("sss"+file_path)
+        # 以读写模式打开测试报告
         f = open(file_path, 'wb')
+        #添加用例到测试套件
         suite = unittest.TestSuite()
         suite.addTest(FirstCase('test_login_success'))
         # suite.addTest(FirstCase('test_login_code_error'))
@@ -70,5 +78,6 @@ if __name__ == '__main__':
         suite.addTest(FirstCase('test_login_username_error'))
         # unittest.TextTestRunner().run(suite)
         # suite = unittest.TestLoader().loadTestsFromTestCase(FirstCase)
+        # Htmlrunner驱动测试套件执行生成报告
         runner = HTMLTestRunner.HTMLTestRunner(stream=f, title="This is first123 report", description=u"这个是我们第一次测试报告",verbosity=2)
         runner.run(suite)
