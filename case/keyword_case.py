@@ -16,6 +16,7 @@ class KeywordCase:
         case_lines = handle_excel.get_lines()
         if case_lines:
             for i in range(1,case_lines):
+                except_result_method2 = handle_excel.get_col_value(i, 7)
                 is_run = handle_excel.get_col_value(i,3)
                 if is_run == 'yes':
                     except_result_method = handle_excel.get_col_value(i,7)
@@ -40,8 +41,12 @@ class KeywordCase:
                                 handle_excel.write_value(i,'fail')
                         else:
                             print("没有else")
+                    elif except_result_method2 == '':
+                        handle_excel.write_value(i, 'pass')
                     else:
                         print('预期结果为空')
+
+
         xd = pd.ExcelFile(basepath+'\\config\\keyword.xls')
         pd.set_option('display.max_colwidth', 1000)  # 设置列的宽度，以防止出现省略号
         df = xd.parse()
