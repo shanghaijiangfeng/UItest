@@ -1,4 +1,5 @@
 #coding=utf-8
+import openpyxl
 import xlrd
 import os
 import sys
@@ -44,6 +45,7 @@ class ExcelUtil:
         return None
 
 
+
     #写入数据
     def write_value(self,row,value):
         read_value = xlrd.open_workbook(self.excel_path)
@@ -53,4 +55,4 @@ class ExcelUtil:
         time.sleep(1)
 if __name__ == '__main__':
     ex = ExcelUtil(basepath+'\\config\\keyword.xls')
-    print(ex.get_col_value(1,1))
+    print(ex.get_lines())

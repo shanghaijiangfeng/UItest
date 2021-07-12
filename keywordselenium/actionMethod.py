@@ -2,8 +2,9 @@
 from selenium import webdriver
 from base.find_element import FindElement
 import time
-class ActionMethod:
+class ActionMethod():
     #打开浏览器
+    #driver=webdriver.Chrome()
     def open_browser(self,browser):
         if browser == 'chrome':
             self.driver = webdriver.Chrome()
@@ -43,3 +44,22 @@ class ActionMethod:
     def get_title(self):
         title = self.driver.title
         return title
+    # 获取预期结果值
+    def get_except_result_value(self, data):
+        return data.split('=')
+
+    def run_method(self, method, send_value='', handle_value=''):
+        method_value = getattr(action_method, method)
+        if send_value == '' and handle_value != '':
+            result = method_value(handle_value)
+        elif send_value == '' and handle_value == '':
+            result = method_value()
+        elif send_value != '' and handle_value == '':
+            result = method_value(send_value)
+        else:
+            result = method_value(send_value, handle_value)
+        return result
+
+action_method=ActionMethod()
+if __name__ == '__main__':
+    action_method.open_browser('chrome')
