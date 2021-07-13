@@ -18,13 +18,14 @@ data = ExcelUtil(basepath + '\\config\\keyword.xls').get_data()
 cs=ExcelUtil(basepath + '\\config\\keyword.xls').get_lines()
 writb=ExcelUtil(basepath + '\\config\\keyword.xls')
 
+
 @ddt.ddt
 class TestKeywordCase(unittest.TestCase):
 
     @ddt.data(*data)
     def test_run_main(self,data):
 
-        caseid=data[0]
+        i=data[10]
 
         is_run = data[3]
         if is_run == 'yes':
@@ -57,8 +58,10 @@ class TestKeywordCase(unittest.TestCase):
                 else:
                     print("没有else")
             else:
+                writb.write_value(i, 'pass')
                 print('预期结果为空')
 
+            assert (data[9]=='pass')
 
 if __name__ == '__main__':
     case_path = basepath + "/case"

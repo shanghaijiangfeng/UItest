@@ -62,4 +62,6 @@ class ActionMethod():
 
 action_method=ActionMethod()
 if __name__ == '__main__':
-    action_method.open_browser('chrome')
+    #action_method.open_browser('chrome')
+    asss = action_method.get_except_result_value('sada=asdasd')
+    print(asss)
