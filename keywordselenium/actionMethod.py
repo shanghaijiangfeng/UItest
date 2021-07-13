@@ -8,10 +8,13 @@ class ActionMethod():
     def open_browser(self,browser):
         if browser == 'chrome':
             self.driver = webdriver.Chrome()
+            self.driver.maximize_window()
         elif browser == 'firefox':
             self.driver = webdriver.Firefox()
+            self.driver.maximize_window()
         else:
             self.driver = webdriver.Edge()
+            self.driver.maximize_window()
         
     #输入地址
     def get_url(self,url):

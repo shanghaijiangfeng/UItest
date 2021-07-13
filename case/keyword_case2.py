@@ -12,6 +12,7 @@ import codecs
 import pandas as pd
 import sys
 import os
+from BeautifulReport import BeautifulReport
 basepath = os.getcwd()
 sys.path.append(basepath)
 data = ExcelUtil(basepath + '\\config\\keyword.xls').get_data()
@@ -59,15 +60,18 @@ class TestKeywordCase(unittest.TestCase):
                     print("没有else")
             else:
                 writb.write_value(i, 'pass')
-                print('预期结果为空')
-
-            assert (data[9]=='pass')
+                print('操作过程用例：'+data[4]+data[5]+data[6])
+            report=data[9]
+            assert (report=='pass')
 
 if __name__ == '__main__':
     case_path = basepath + "/case"
     report_path = basepath + "/report/report.html"
     discover = unittest.defaultTestLoader.discover(case_path, pattern="keyword_case2.py")
     # unittest.TextTestRunner().run(discover)
+    '''
     with open(report_path, "wb") as f:
-        runner = HTMLTestRunner.HTMLTestRunner(stream=f, title="Mushishi", description="this is test")
+        runner = HTMLTestRunner.HTMLTestRunner(stream=f, title="官网巡检", description="testreport")
         runner.run(discover)
+    '''
+    BeautifulReport(discover).report(filename='测试报告', description='测试', log_path=report_path)
