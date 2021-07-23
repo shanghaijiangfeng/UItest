@@ -5,11 +5,14 @@ basepath=os.getcwd()
 sys.path.append(basepath)
 from selenium import webdriver
 import time
+from keywordselenium import actionMethod
 import random
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from PIL import Image
+from base import find_element
+'''
 print(basepath)
 driver = webdriver.Chrome()
 
@@ -63,3 +66,4 @@ user_element.send_keys("saa1231saf")
 driver.find_element_by_name("password").send_keys("sahfkhj123123")
 driver.find_element_by_xpath("//*[@id='captcha_code']").send_keys("111111")
 driver.close()
+'''

@@ -25,9 +25,8 @@ class TestKeywordCase(unittest.TestCase):
 
     @ddt.data(*data)
     def test_run_main(self,data):
-
+        print(data[0])
         i=data[10]
-
         is_run = data[3]
         if is_run == 'yes':
             "预期结果(调用方法)"
@@ -46,7 +45,7 @@ class TestKeywordCase(unittest.TestCase):
                 except_value = action_method.get_except_result_value(except_result)
                 if except_value[0] == 'text':
                     result = action_method.run_method(except_result_method)
-                    if except_value[1] in result:
+                    if except_value[1] == result:
                         writb.write_value(i, 'pass')
                     else:
                         writb.write_value(i, 'fail')
@@ -60,7 +59,7 @@ class TestKeywordCase(unittest.TestCase):
                     print("没有else")
             else:
                 writb.write_value(i, 'pass')
-                print('操作过程用例：'+data[4]+data[5]+data[6])
+                print('操作过程用例：'+data[0])
             report=data[9]
             assert (report=='pass')
 
@@ -74,4 +73,4 @@ if __name__ == '__main__':
         runner = HTMLTestRunner.HTMLTestRunner(stream=f, title="官网巡检", description="testreport")
         runner.run(discover)
     '''
-    BeautifulReport(discover).report(filename='测试报告', description='测试', log_path=report_path)
+    BeautifulReport(discover).report(filename='测试报告', description='测试', report_dir=report_path)
